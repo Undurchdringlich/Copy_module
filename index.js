@@ -1,8 +1,8 @@
-const test = require('./modulePath/main');
+const addon = require('bindings')('cp_module');
 
-const files = ['C:\\files\\text.txt', 'C:\\files\\image.png']; // Пример массива путей к файламconst
+const files = ['D:\\Programming\\test\\text.txt', 'D:\\Programming\\test\\image.jpg']; // Пример массива путей к файлам
 
-location = 'C:\\location'; // Пример папки, в которую нужно скопировать файлы
+const location = 'D:\\Programming\\location'; // Пример папки, в которую нужно скопировать файлы
 
 function printProgress(text) {
     console.log(text);
@@ -12,4 +12,4 @@ function printSuccess(text) {
     console.log(text);
 } // Функция callback, выводящая сообщение о завершении копирования
 
-//test.copy(files, location, printProgress, printSuccess);
+addon.copy(files, location, printProgress, printSuccess);
