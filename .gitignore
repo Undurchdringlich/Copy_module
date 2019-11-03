@@ -6,6 +6,7 @@ Release/
 *.log
 package-lock.json
 npm-debug.log*
+cp_module.code-workspace
 
 .idea/
 .vscode/
