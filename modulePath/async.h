@@ -10,7 +10,7 @@ void CopyFileInDirectory(const Napi::CallbackInfo&);
 
 class AsyncCopy : public Napi::AsyncWorker {
     public:
-        AsyncCopy(const Napi::CallbackInfo& info, string*);
+        AsyncCopy(const Napi::CallbackInfo&, string*);
         ~AsyncCopy();
 
         void Execute();
@@ -24,7 +24,6 @@ class AsyncCopy : public Napi::AsyncWorker {
         string *files;
         const int arrayLenght;
         void CopyFiles();
-        void PrintProgress(Napi::Env, Napi::Function, string);
         string NameFileInPath(string, char);
 };
 

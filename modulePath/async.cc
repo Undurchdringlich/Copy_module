@@ -9,9 +9,7 @@ AsyncCopy::AsyncCopy(const Napi::CallbackInfo& info, string *ptrFiles)
     Napi::AsyncWorker(info[3].As<Napi::Function>()),
     env(info.Env()),
     arrayLenght(arrayString.Length()),
-    files(ptrFiles) {
-        
-    }
+    files(ptrFiles) {}
 
 AsyncCopy::~AsyncCopy() {
     delete [] files;
@@ -25,7 +23,7 @@ void AsyncCopy::Execute() {
 void AsyncCopy::OnOK() {
     Napi::HandleScope scope(env);
     Callback().Call({Napi::String::New(env, "All files are copied!")});
-}
+}   // callback при завершении копирования всех файлов
 
 void AsyncCopy::CopyFiles() {
     char checkSymbol = '\\';
@@ -43,7 +41,7 @@ void AsyncCopy::CopyFiles() {
             fileTargetPaste.write(&buf[0], fileTargetCopy.gcount());
 
         } while (fileTargetCopy.gcount() > 0);
-        
+
         fileTargetCopy.close();
         fileTargetPaste.close();
 
@@ -52,13 +50,7 @@ void AsyncCopy::CopyFiles() {
         }
         
     }
-}
-
-void AsyncCopy::PrintProgress(Napi::Env env, Napi::Function printProgress, string path) {
-  printProgress.Call(env.Global(), {
-    Napi::String::New(env, "File " + path + " copied")
-  });
-}
+}   // Функция с основной логикой для копирования  
 
 
 string AsyncCopy::NameFileInPath(string path, char checkSymbol) {
@@ -79,7 +71,7 @@ string AsyncCopy::NameFileInPath(string path, char checkSymbol) {
     }
 
     return result;
-}
+}   // Функция которая определяет название файла из пути
 
 void CopyFileInDirectory(const Napi::CallbackInfo& info) {
     const Napi::Array arrayString = info[0].As<Napi::Array>();
@@ -92,6 +84,6 @@ void CopyFileInDirectory(const Napi::CallbackInfo& info) {
 
     AsyncCopy *asyncCopy = new AsyncCopy(info, files);
     asyncCopy->Queue();
-}
+}   // Ключевая функция для создания массива необходимых файлов и запуска отдельного потока для копирования этих файлов
 
 
