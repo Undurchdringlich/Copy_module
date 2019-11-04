@@ -48,10 +48,8 @@ void CopyFileInDirectory(const Napi::CallbackInfo& info) {
   }
   PrintSuccess(info);
 }
+//-------------------------Main function(end)----------------------------//
 
-void TraslateInBasicString(const Napi::CallbackInfo& info, string& result) {
-
-}
 
 //---------------Callback function "Progress"(start)--------------------//
 void PrintProgress(const Napi::CallbackInfo& info, string path) {
