@@ -1,10 +1,13 @@
 {
   "targets": [
     {
-      "target_name": "cp_module",
+      "target_name": "addon",
       "cflags!": [ "-fno-exceptions" ],
       "cflags_cc!": [ "-fno-exceptions" ],
-      "sources": [ "modulePath/cp_module.cc" ],
+      "sources": [ 
+        "modulePath/addon.cc",
+        "modulePath/async.cc"
+      ],
       "include_dirs": [
         "<!@(node -p \"require('node-addon-api').include\")"
       ],
